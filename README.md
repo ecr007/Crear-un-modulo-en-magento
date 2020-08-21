@@ -11,7 +11,7 @@
 <p>Here Amasty is the name of the company that built the extension, HelloWorld is the name of the Magento 2 extension we are creating at the moment.</p>
 <p>Now it's time to actually code the extension. Catalogs purposes have slightly changed in comparison with the first versions of Magento.</p>
 <p>Extension configuration is located in <code>etc</code> folder, as before.</p>
-<p>Let's create ```app\code\Amasty\HelloWorld\etc ```catalog and a ```module.xml``` file inside it. This is the file where we are going to set our extension name and its version.</p>
+<p>Let's create <code>app\code\Amasty\HelloWorld\etc</code> catalog and a <code>module.xml</code> file inside it. This is the file where we are going to set our extension name and its version.</p>
 <p>The file looks like this:</p>
 
 ```xml
@@ -24,7 +24,7 @@
 <p>Now let's check if Magento 2 sees the extension.</p>
 <p>Run the following console command:</p>
 <p><code>php bin/magento setup:upgrade</code></p>
-<p>But there's no result. To fix it, let's create ```registration.php``` file in the root folder of the extension and put the following code inside:</p>
+<p>But there's no result. To fix it, let's create <code>registration.php</code> file in the root folder of the extension and put the following code inside:</p>
 
 ```php
 /**
@@ -45,8 +45,8 @@
 
 <h2>Create settings</h2>
 
-<p>Now let's create some settings for the new extension. To do that, add ```adminhtml``` catalog to ```etc ```catalog. It will contain configuration files for backend.</p>
-<p>The first file we need here is ```routes.xml``` for ``` frontName and id``` setting<strong>, </strong>which is used to define queries for the extension. It is done by the following piece of code:</p>
+<p>Now let's create some settings for the new extension. To do that, add <code>adminhtml</code> catalog to <code>etc </code>catalog. It will contain configuration files for backend.</p>
+<p>The first file we need here is <code>routes.xml</code> for <code> frontName and id</code> setting, which is used to define queries for the extension. It is done by the following piece of code:</p>
 
 ```xml
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
@@ -57,7 +57,7 @@
 	</router>
 </config>
 ```
-<p>Now let's configure the extension settings. As in the previous version, they're located in the ```system.xml``` file, but the xml markup is slightly different in Magento 2.</p>
+<p>Now let's configure the extension settings. As in the previous version, they're located in the <code>system.xml</code> file, but the xml markup is slightly different in Magento 2.</p>
 
 <p>I'm creating the three most popular settings as an example: a text setting, yes/no setting and a setting with custom values.</p>
 <p>Have a look at the config file contents and what it actually means:</p>
@@ -94,18 +94,18 @@
 	</system>
 </config>
 ```
-<p>Add a new section to the settings block using ```<tab>```. Set the unique ID and the name of the settings section inside. It is done because we have a very high possibility of using several apps from the same vendor on a single site.</p>
+<p>Add a new section to the settings block using <code><tab><code>. Set the unique ID and the name of the settings section inside. It is done because we have a very high possibility of using several apps from the same vendor on a single site.</p>
 
-<p>Add the new ```<section id="amasty_helloworld">``` , again, with the unique ID, and set the necessary parameters, such as type, translation fields, order, label, the block for which the section is added, and so on. And then add the settings just inside the section. They will be divided into groups (one group in our case). The groups are defined by ```<group>```<strong>, </strong>and the fields are set by``` <field>```<strong>. </strong> We have already created three settings and pointed out types, labels, visibility, translation, comments and the data model.</p>
-<p>In our case the third setting implies custom data, so we pointed out a separate data model for it. To do that, you need to create ```Amasty\HelloWorld\Model\Source\ Align``` model, where we will set the needed choice variants. The extension should be defined from ```\Magento\Framework\Option\ArrayInterface``` interface, and you need to redefine ```toOptionArray()``` and ```toArray()``` methods as well.</p>
+<p>Add the new <code><section id="amasty_helloworld"></code> , again, with the unique ID, and set the necessary parameters, such as type, translation fields, order, label, the block for which the section is added, and so on. And then add the settings just inside the section. They will be divided into groups (one group in our case). The groups are defined by <code><group></code><strong>, </strong>and the fields are set by<code> <field></code><strong>. </strong> We have already created three settings and pointed out types, labels, visibility, translation, comments and the data model.</p>
+<p>In our case the third setting implies custom data, so we pointed out a separate data model for it. To do that, you need to create <code>Amasty\HelloWorld\Model\Source\ Align</code> model, where we will set the needed choice variants. The extension should be defined from <code>\Magento\Framework\Option\ArrayInterface</code> interface, and you need to redefine <code>toOptionArray()</code> and <code>toArray()</code> methods as well.</p>
 <p>To check what you are doing, go to the bottom of the article and subscribe to get the code of the whole extension.</p>
-<p>Let's check the result. Open your Magento 2 backend, go to ```Stores – Configuration```. Boom, we can see the settings!</p>
+<p>Let's check the result. Open your Magento 2 backend, go to <code>Stores – Configuration</code>. Boom, we can see the settings!</p>
 <img class="aligncenter size-full wp-image-9818" src="img/create-magento-2-extension-create-module-settings.png">
-<p>Now, as we created the settings, we should set default values for the options. To do that, create a ```config.xml``` in the ```etc``` catalog and put the default values in accordance with ```system.xml``` in there.</p>
+<p>Now, as we created the settings, we should set default values for the options. To do that, create a <code>config.xml</code> in the <code>etc</code> catalog and put the default values in accordance with <code>system.xml</code> in there.</p>
 <h2>Frontend output</h2>
 <h3>Block</h3>
 <p>Now let's try to show something on the frontend, i.e. to create a block and a template for it, and then to show this block on the product page.</p>
-<p>Create a class of``` \Amasty\HelloWorld\Block\Catalog\Product\HelloWorld``` block, which should inherit from Magento class ```\Magento\Framework\View\Element\Template```</p>
+<p>Create a class of<code> \Amasty\HelloWorld\Block\Catalog\Product\HelloWorld</code> block, which should inherit from Magento class <code>\Magento\Framework\View\Element\Template</code></p>
 <p>We are going to use the parent constructor. Here's how it will look like for this block:</p>
 
 ```php
@@ -115,15 +115,15 @@ public function __construct(\Magento\Framework\View\Element\Template\Context $co
 ```
 <h3>Template</h3>
 <p>Let's create a simple template and put it in the following catalog:</p>
-<p>```Amasty\HelloWorld\view\frontend\templates\product\hello.phtml```</p>
-<p>You can see that in Magento 2 we have the ```view``` catalog, where we're going to store the information, which was scattered in several theme catalogs, such as templates, layouts, scripts, styles, before.</p>
+<p><code>Amasty\HelloWorld\view\frontend\templates\product\hello.phtml</code></p>
+<p>You can see that in Magento 2 we have the <code>view</code> catalog, where we're going to store the information, which was scattered in several theme catalogs, such as templates, layouts, scripts, styles, before.</p>
 <p>Put this simple text inside:</p>
-<p>```<?=__('Hello World');?>```</p>
-<p>As we see from the example, now you can perform translation in Magento using``` __()``` without a separate class. And the translation for this line will be pulled from ```Amasty\HelloWorld\i18n\en_US.csv```</p>
+<p><code><?=__('Hello World');?></code></p>
+<p>As we see from the example, now you can perform translation in Magento using<code> __()</code> without a separate class. And the translation for this line will be pulled from <code>Amasty\HelloWorld\i18n\en_US.csv</code></p>
 <p>We have created the template, now let's show it on the product page.</p>
 <h3>Layout</h3>
 <p>Time to create the layout! Now we are creating not a unique layout for all the pages, but a separate file for each page. As we will show the block on the product page, let's create a layout with the following name:<br>
-```Amasty\HelloWorld\view\frontend\layout\catalog_product_view.xml```<br>
+<code>Amasty\HelloWorld\view\frontend\layout\catalog_product_view.xml</code><br>
 Put this code inside:</p>
 
 ```xml
@@ -138,8 +138,8 @@ Put this code inside:</p>
 	</body>
 </page>
 ```
-<p>As an example, we added the new block into ```product.info.main``` block in the layout code and added the styles file to use when showing on frontend. The styles file has the following address:</p>
-<p>```Amasty\HelloWorld\view\frontend\web\css\hello.css```</p>
+<p>As an example, we added the new block into <code>product.info.main</code> block in the layout code and added the styles file to use when showing on frontend. The styles file has the following address:</p>
+<p><code>Amasty\HelloWorld\view\frontend\web\css\hello.css</code></p>
 <p>Refresh the product page:</p>
 <img class="aligncenter size-full wp-image-9819" src="img/create-magento-2-extension-block-on-product-page.png">
 <p>Voila, the block is there!</p>
@@ -160,17 +160,22 @@ public function __construct(\Magento\Framework\View\Element\Template\Context $co
 }
 ```
 
-<p>The helper from the created block is used as ```$this->_helper``` variable.</p>
+<p>The helper from the created block is used as <code>$this->_helper</code> variable.</p>
 <h3>Helper</h3>
 <p>Create the helper in the following catalog:</p>
-<p>```Amasty\HelloWorld\Helper\Data.php```</p>
-<p>Add ```\Magento\Framework\App\Config\ScopeConfigInterface``` interface object initialization to the helper, it works to receive the data from configuration.</p>
+<p><code>Amasty\HelloWorld\Helper\Data.php</code></p>
+<p>Add <code>\Magento\Framework\App\Config\ScopeConfigInterface</code> interface object initialization to the helper, it works to receive the data from configuration.</p>
 <p>Now the file looks like this:</p>
 
 ```php
 namespace Amasty\HelloWorld\Helper; 
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper { /** * @var \Magento\Framework\App\Config\ScopeConfigInterfac */ protected $_scopeConfig; 
+class Data extends \Magento\Framework\App\Helper\AbstractHelper {
+	
+	/**
+	 * @var \Magento\Framework\App\Config\ScopeConfigInterfac
+	 */
+	protected $_scopeConfig; 
 	
 	CONST ENABLE = 'amasty_helloworld/general/enable';
 	CONST BLOCK_LABEL = 'amasty_helloworld/general/block_label';
@@ -207,7 +212,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper { /** * @var \Ma
 <p><img class="aligncenter size-full wp-image-9820" src="img/create-magento-2-extension-block-settings-display.png"></p>
 <h2>Model creation</h2>
 <h3>Create installation script</h3>
-<p>As in the 1.x versions of Magento, you need to create the installation file to use your own table. We are going to describe creating of a simple table with several fields. The file should be created here: ```Amasty\HelloWorld\Setup\InstallSchema.php```</p>
+<p>As in the 1.x versions of Magento, you need to create the installation file to use your own table. We are going to describe creating of a simple table with several fields. The file should be created here: <code>Amasty\HelloWorld\Setup\InstallSchema.php</code></p>
 <p>And this is its contents:</p>
 
 ```php
@@ -244,10 +249,10 @@ public function install(SchemaSetupInterface $setup, ModuleContextInterface $con
 }
 ```
 
-<p>You can see that we are creating an ```amasty_helloworld``` table with one field of integer type and two fields of text type.</p>
+<p>You can see that we are creating an <code>amasty_helloworld</code> table with one field of integer type and two fields of text type.</p>
 <h3>Model creation</h3>
 <p>As in the previous Magento version, we need to create three classes to work with the model: the model itself, the resource model and the collection.</p>
-<p>Let's create a ```Amasty\HelloWorld\Model\HelloWorld.php``` file and use the following initialization:</p>
+<p>Let's create a <code>Amasty\HelloWorld\Model\HelloWorld.php</code> file and use the following initialization:</p>
 
 ```php
 namespace Amasty\HelloWorld\Model\ResourceModel;
@@ -266,8 +271,8 @@ class HelloWorld extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb{
 ```
 
 <p>We just set the constructor for the model here. In fact, there is no great difference from the first Magento versions on this step. The resource model and the collection are stored in the following catalogs:</p>
-<p>```Amasty\HelloWorld\Model\ResourceModel\HelloWorld.php```</p>
-<p>```Amasty\HelloWorld\Model\ResourceModel\HelloWorld\Collection.php```</p>
+<p><code>Amasty\HelloWorld\Model\ResourceModel\HelloWorld.php</code></p>
+<p><code>Amasty\HelloWorld\Model\ResourceModel\HelloWorld\Collection.php</code></p>
 <p>These files' listings are of no particular interest. Create a simple function in the block we're working with:</p>
 
 ```php
