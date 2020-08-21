@@ -10,7 +10,7 @@
 
 <p>Here Amasty is the name of the company that built the extension, HelloWorld is the name of the Magento 2 extension we are creating at the moment.</p>
 <p>Now it's time to actually code the extension. Catalogs purposes have slightly changed in comparison with the first versions of Magento.</p>
-<p>Extension configuration is located in ```etc``` folder, as before.</p>
+<p>Extension configuration is located in <code>etc</code> folder, as before.</p>
 <p>Let's create ```app\code\Amasty\HelloWorld\etc ```catalog and a ```module.xml``` file inside it. This is the file where we are going to set our extension name and its version.</p>
 <p>The file looks like this:</p>
 
@@ -244,7 +244,7 @@ public function install(SchemaSetupInterface $setup, ModuleContextInterface $con
 }
 ```
 
-<p>You can see that we are creating an ```'amasty_helloworld'``` table with one field of integer type and two fields of text type.</p>
+<p>You can see that we are creating an ```amasty_helloworld``` table with one field of integer type and two fields of text type.</p>
 <h3>Model creation</h3>
 <p>As in the previous Magento version, we need to create three classes to work with the model: the model itself, the resource model and the collection.</p>
 <p>Let's create a ```Amasty\HelloWorld\Model\HelloWorld.php``` file and use the following initialization:</p>
