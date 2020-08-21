@@ -118,7 +118,9 @@ public function __construct(\Magento\Framework\View\Element\Template\Context $co
 <p><code>Amasty\HelloWorld\view\frontend\templates\product\hello.phtml</code></p>
 <p>You can see that in Magento 2 we have the <code>view</code> catalog, where we're going to store the information, which was scattered in several theme catalogs, such as templates, layouts, scripts, styles, before.</p>
 <p>Put this simple text inside:</p>
-<p><code><?=__('Hello World');?></code></p>
+
+```<?=__('Hello World');?>```
+
 <p>As we see from the example, now you can perform translation in Magento using<code> __()</code> without a separate class. And the translation for this line will be pulled from <code>Amasty\HelloWorld\i18n\en_US.csv</code></p>
 <p>We have created the template, now let's show it on the product page.</p>
 <h3>Layout</h3>
