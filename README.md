@@ -41,7 +41,7 @@
 
 <p>This is done to tell Magento 2 that it should run the extension from the current directory.</p>
 <p>Now go and clear Magento cache, and you'll see that our extension is working now:</p>
-<p><img class="aligncenter size-full wp-image-9815" src="img/create-magento-2-extension-enable-module.png"></p>
+<p><img class="aligncenter size-full wp-image-9815" src="create-magento-2-extension-enable-module.png"></p>
 
 <h2>Create settings</h2>
 
@@ -94,13 +94,13 @@
 	</system>
 </config>
 ```
-<p>Add a new section to the settings block using <code><tab><code>. Set the unique ID and the name of the settings section inside. It is done because we have a very high possibility of using several apps from the same vendor on a single site.</p>
+<p>Add a new section to the settings block using ```<tab>```. Set the unique ID and the name of the settings section inside. It is done because we have a very high possibility of using several apps from the same vendor on a single site.</p>
 
 <p>Add the new <code><section id="amasty_helloworld"></code> , again, with the unique ID, and set the necessary parameters, such as type, translation fields, order, label, the block for which the section is added, and so on. And then add the settings just inside the section. They will be divided into groups (one group in our case). The groups are defined by <code><group></code><strong>, </strong>and the fields are set by<code> <field></code><strong>. </strong> We have already created three settings and pointed out types, labels, visibility, translation, comments and the data model.</p>
 <p>In our case the third setting implies custom data, so we pointed out a separate data model for it. To do that, you need to create <code>Amasty\HelloWorld\Model\Source\ Align</code> model, where we will set the needed choice variants. The extension should be defined from <code>\Magento\Framework\Option\ArrayInterface</code> interface, and you need to redefine <code>toOptionArray()</code> and <code>toArray()</code> methods as well.</p>
 <p>To check what you are doing, go to the bottom of the article and subscribe to get the code of the whole extension.</p>
 <p>Let's check the result. Open your Magento 2 backend, go to <code>Stores – Configuration</code>. Boom, we can see the settings!</p>
-<img class="aligncenter size-full wp-image-9818" src="img/create-magento-2-extension-create-module-settings.png">
+<img class="aligncenter size-full wp-image-9818" src="create-magento-2-extension-create-module-settings.png">
 <p>Now, as we created the settings, we should set default values for the options. To do that, create a <code>config.xml</code> in the <code>etc</code> catalog and put the default values in accordance with <code>system.xml</code> in there.</p>
 <h2>Frontend output</h2>
 <h3>Block</h3>
@@ -141,7 +141,7 @@ Put this code inside:</p>
 <p>As an example, we added the new block into <code>product.info.main</code> block in the layout code and added the styles file to use when showing on frontend. The styles file has the following address:</p>
 <p><code>Amasty\HelloWorld\view\frontend\web\css\hello.css</code></p>
 <p>Refresh the product page:</p>
-<img class="aligncenter size-full wp-image-9819" src="img/create-magento-2-extension-block-on-product-page.png">
+<img class="aligncenter size-full wp-image-9819" src="create-magento-2-extension-block-on-product-page.png">
 <p>Voila, the block is there!</p>
 <p>Now let's change the look of the block – and add the helper initialization to it.</p>
 <p>The extension constructor looks like this:</p>
@@ -209,7 +209,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
 </div>
 ```
 <p>Now the block is displayed taking the settings into account:</p>
-<p><img class="aligncenter size-full wp-image-9820" src="img/create-magento-2-extension-block-settings-display.png"></p>
+<p><img class="aligncenter size-full wp-image-9820" src="create-magento-2-extension-block-settings-display.png"></p>
 <h2>Model creation</h2>
 <h3>Create installation script</h3>
 <p>As in the 1.x versions of Magento, you need to create the installation file to use your own table. We are going to describe creating of a simple table with several fields. The file should be created here: <code>Amasty\HelloWorld\Setup\InstallSchema.php</code></p>
@@ -294,4 +294,4 @@ public function getCollection(){
 ```
 <p>Now update the product page: it works!</p>
 
-<img class="aligncenter size-full wp-image-9821" src="img/create-magento-2-extension-final-result.png">
+<img class="aligncenter size-full wp-image-9821" src="create-magento-2-extension-final-result.png">
